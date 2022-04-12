@@ -2,7 +2,11 @@
 
 ## Roles and Responsibilities
 
-Pierre Auffray : Scrum master
+Pierre Auffray (Scrum master) is reponsible for:
+- Coaching the team members in self-management and cross-functionality
+- Helping the Scrum Team focus on creating high-value Increments that meet the Definition of Done
+- Helping to develop the project
+- making sure that we organize retrospectives
 
 Arthur Sauvage : Product owner
 
