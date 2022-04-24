@@ -65,6 +65,39 @@ namespace SDS.Controllers
             return View(course);
         }
 
+        public async Task<IActionResult> Like(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Course.FindAsync(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+            try
+                {
+                    course.Likes += 1; 
+                    _context.Update(course);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CourseExists(course.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            
+        }
+
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
