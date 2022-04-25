@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj": {}
+    "C:\\Users\\auffr\\Documents\\semestre_pologne\\sds1\\projet\\erasmus-sds\\SDS\\SDS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj": {
+    "C:\\Users\\auffr\\Documents\\semestre_pologne\\sds1\\projet\\erasmus-sds\\SDS\\SDS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj",
+        "projectUniqueName": "C:\\Users\\auffr\\Documents\\semestre_pologne\\sds1\\projet\\erasmus-sds\\SDS\\SDS.csproj",
         "projectName": "SDS",
-        "projectPath": "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj",
-        "packagesPath": "C:\\Users\\Arthur Sauvage\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\obj\\",
+        "projectPath": "C:\\Users\\auffr\\Documents\\semestre_pologne\\sds1\\projet\\erasmus-sds\\SDS\\SDS.csproj",
+        "packagesPath": "C:\\Users\\auffr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\auffr\\Documents\\semestre_pologne\\sds1\\projet\\erasmus-sds\\SDS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Arthur Sauvage\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\auffr\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
