@@ -19,6 +19,12 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Speciality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ects)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Likes)
             </th>
             <th>
@@ -35,6 +41,12 @@
             </td>
             <td>
                 <a href="@item.Description">Course Description Card (ECTS)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speciality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ects)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Likes)

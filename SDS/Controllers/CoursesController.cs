@@ -54,7 +54,7 @@ namespace SDS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Likes,Difficulty")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Speciality,Ects,Likes,Difficulty")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace SDS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Likes,Difficulty")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Speciality,Ects,Likes,Difficulty")] Course course)
         {
             if (id != course.Id)
             {
