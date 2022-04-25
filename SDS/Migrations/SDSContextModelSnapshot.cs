@@ -24,6 +24,12 @@ namespace SDS.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Speciality")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Ects")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Difficulty")
                         .HasColumnType("INTEGER");
 

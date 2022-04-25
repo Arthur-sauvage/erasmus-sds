@@ -16,6 +16,8 @@ namespace SDS.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Speciality = table.Column<string>(type: "TEXT", nullable: true),
+                    Ects = table.Column<int>(type: "INTEGER", nullable: false),
                     Likes = table.Column<int>(type: "INTEGER", nullable: false),
                     Difficulty = table.Column<int>(type: "INTEGER", nullable: false)
                 },
