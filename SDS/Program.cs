@@ -1,6 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using SDS.Data;
+using SDS.Areas.Identity.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("SDSAuthContextConnection");;
+
+builder.Services.AddDbContext<SDSAuthContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<SDSUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+}
+        ) 
+    .AddEntityFrameworkStores<SDSAuthContext>();;
 
 if (builder.Environment.IsDevelopment())
 {
@@ -15,6 +33,7 @@ else
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -30,11 +49,14 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Courses}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints => endpoints.MapRazorPages());
 
 app.Run();
