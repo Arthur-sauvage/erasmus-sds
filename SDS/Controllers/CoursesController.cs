@@ -182,5 +182,24 @@ namespace SDS.Controllers
         {
             return _context.Course.Any(e => e.Id == id);
         }
+
+
+        // GET: Courses/Comments
+        public async Task<IActionResult> Comments(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Course
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
     }
 }

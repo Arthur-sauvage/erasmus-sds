@@ -11,5 +11,16 @@ namespace SDS.Models
         public int Ects { get; set; }
         public int Likes { get; set; }
         public int Difficulty { get; set; }
+
+        //public List<Comment> AllComments { get; set; }
     }
+
+    //class Comment
+
+    /*public class Comment
+    {
+        private string IdStudent { get; set; }
+
+        private string CommentStudent { get; set; }
+    }*/
 }

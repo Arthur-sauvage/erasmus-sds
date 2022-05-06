@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SDS",
-    "\\SDS\\Controllers"
+    "\\SDS"
   ],
-  "SelectedNode": "\\SDS\\SDS.csproj",
   "PreviewInSolutionExplorer": false
 }
