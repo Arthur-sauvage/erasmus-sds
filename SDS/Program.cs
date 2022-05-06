@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SDSAuthContextConnection");;
 
 builder.Services.AddDbContext<SDSAuthContext>(options =>
-    options.UseSqlServer(connectionString));;
+    options.UseSqlite(connectionString));;
 
 builder.Services.AddDefaultIdentity<SDSUser>(options =>
 {
@@ -16,6 +16,8 @@ builder.Services.AddDefaultIdentity<SDSUser>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 1;
+    options.Password.RequireDigit = false;
 }
         ) 
     .AddEntityFrameworkStores<SDSAuthContext>();;

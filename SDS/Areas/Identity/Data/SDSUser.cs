@@ -13,6 +13,7 @@ public class SDSUser : IdentityUser
     [PersonalData]
     [Column(TypeName = "navchar(100)")]
     private string? FirstName { get; set; }
+
     [PersonalData]
     [Column(TypeName = "navchar(100)")]
     private string? LastName { get; set; }

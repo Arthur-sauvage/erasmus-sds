@@ -123,8 +123,9 @@ namespace SDS.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                string emailtmp = Input.FirstName + "." + Input.LastName + "@student.put.poznan.pl";
                 await _userStore.SetUserNameAsync(user, Input.Student_ID, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, "mail", CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, emailtmp, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -145,7 +146,7 @@ namespace SDS.Areas.Identity.Pages.Account
                     */
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = "mail", returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = emailtmp, returnUrl = returnUrl });
                     }
                     else
                     {
