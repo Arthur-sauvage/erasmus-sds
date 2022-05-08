@@ -12,15 +12,22 @@ namespace SDS.Models
         public int Likes { get; set; }
         public int Difficulty { get; set; }
 
-        //public List<Comment> AllComments { get; set; }
+        public string? LastComment { get; set; }
+
+        //public Comment? CommTest { get; set; }
+
+        public List<Comment>? AllComments { get; set; }
+
+        //public string? LastComment { get; set; }    
+        //public string? LastComment { get; set; }
+
+        //class Comment
+
+        /*public class Comment
+        {
+            private string IdStudent { get; set; }
+
+            private string CommentStudent { get; set; }
+        }*/
     }
-
-    //class Comment
-
-    /*public class Comment
-    {
-        private string IdStudent { get; set; }
-
-        private string CommentStudent { get; set; }
-    }*/
 }

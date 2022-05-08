@@ -1,13 +1,19 @@
 ﻿@model SDS.Models.Course
 
+
+
 @{
     ViewData["Title"] = "Comments";
 }
 
+
+
 <h1>Comments</h1>
 
-<h3>Enter only one comment od the course @Html.DisplayFor(model => model.Name)</h3>
+
 <div id="divComment">
+
+
     
     <h4>Course</h4>
     <hr />
@@ -50,16 +56,72 @@
         </dd>
     </dl>
 
-     <input style="margin-bottom: 30px" type="text" id="idComment" name="name" required
+    <div class="col-md-4">
+        <form asp-action="TestSaveList">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="AllComments" class="control-label"></label>
+                <input asp-for="AllComments" class="form-control" />
+                <span asp-validation-for="AllComments" class="text-danger"></span>
+            </div>
+            </form>
+    </div>
+
+    <h6 style = "margin-top:80px;font-weight: bold">Enter comment, difficulty and quality for the course : @Html.DisplayFor(model => model.Name). Then submit.</h6>
+
+    <input id="idComment" style="margin-bottom: 30px" type="text"  name="name" required
        minlength="4" size="100">
          <button id="btnComment" type="button" onclick="addComment()";>Add Comment</button>
 
-         <h3>Comments of others studients</h3>
+         <label style="margin-right:80px;font-weight: bold" for="gradeDifficulty">Choose a grade of difficulty between 1 and 5:</label>
+         <select name="gradeDifficulty" id="gradeD" style="margin-bottom: 60px">
+        <option value="">--Please choose a grade--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+     
+     
+     <button id="btnDifficulty" type="button" onclick="addGradeOfDifficulty()";>Add Difficulty</button>
 
-         <ul id= "listComment">
-             
-            
-         </ul>
+     <label style="margin-right:80px; margin-bottom:50px;font-weight: bold" for="gradeQuality">Choose a grade of quality between 1 and 5:</label>
+
+    <select name="gradeQuality" id="gradeQ">
+        <option value="">--Please choose a grade--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+     
+     <button id="btnQuality" type="button" onclick="addGradeOfQuality()";>Add Quality</button>
+
+     <button style="margin-left:250px" id="btnSubmit" type="button" disabled onclick="submitAdvice()";>SUBMIT</button>
+
+     
+
+         <h3>Advice of studients about the course :  @Html.DisplayFor(model => model.Name) </h3>
+
+         
+         <table style = "margin-top:40px ; margin-bottom:60px" class=".col-lg-6" id="myTable">
+  <tr>
+    <td style="padding-right:150px ; font-weight: bold">COMMENT</td>
+    <td style="padding-right:10px ; font-weight: bold">DIFFICULTY</td>
+    <td style="font-weight: bold">QUALITY</td>
+  </tr>
+  
+</table>
+         
+
+         
+         
         
    
 
@@ -68,13 +130,110 @@
 
     <script type="text/javascript">
 
+        var nbButtonClick = 0;
+        var cpt = 1;
+        var table = document.getElementById("myTable");
+        var newAdvice = table.insertRow(cpt);
+         
+        
+
         function addComment(){
-            const commentItem = document.createElement("li");
+            
+            
+            var newC = newAdvice.insertCell(0);
+            newC.innerHTML = $('#idComment').val();
+            $('#idComment').prop('disabled', true);
+            $('#btnComment').prop('disabled', true);
+
+            nbButtonClick++;
+
+            if(nbButtonClick%3==0) {
+                $('#btnSubmit').prop('disabled', false);
+            }
+
+            
+           /* const commentItem = document.createElement("li");
             const txtComment = document.createTextNode($('#idComment').val());
             commentItem.appendChild(txtComment);
 
             document.getElementById("listComment").appendChild(commentItem);
             $('#idComment').val("");
+            /*$('#idComment').prop('disabled', true);
+            $('#idDifficulty').prop('disabled', false);*/
+        }
+
+        function addGradeOfDifficulty(){
+
+            var newD = newAdvice.insertCell(1);
+            newD.innerHTML = $('#gradeD').val();
+            $('#gradeD').prop('disabled', true);
+            $('#btnDifficulty').prop('disabled', true);
+            
+            nbButtonClick++;
+
+            if(nbButtonClick%3==0) {
+                $('#btnSubmit').prop('disabled', false);
+            }
+            
+            /*const diffItem = document.createElement("li");
+            const txtDiff = document.createTextNode($('#idDifficulty').val());
+            diffItemD.appendChild(txtDiff);
+
+            document.getElementById("listDifficulty").appendChild(commentItem);
+            $('#idDifficulty').val("");
+           /* $('#idDifficulty').prop('disabled', true);
+            $('#idQuality').prop('disabled', false);
+            */
+
+        }
+
+        function addGradeOfQuality(){
+
+            var newQ = newAdvice.insertCell(2);
+            newQ.innerHTML = $('#gradeQ').val();
+            $('#gradeQ').prop('disabled', true);
+            $('#btnQuality').prop('disabled', true);
+            
+            nbButtonClick++;
+
+            if(nbButtonClick%3==0) {
+                $('#btnSubmit').prop('disabled', false);
+            }
+            /*const qualityItem = document.createElement("li");
+            const txtQuality = document.createTextNode($('#idQuality').val());
+            qualityItem.appendChild(txtQuality);
+
+            document.getElementById("listQuality").appendChild(commentItem);
+            $('#idQuality').val("");
+           /* $('#idQuality').prop('disabled', true);
+            $('#idComment').prop('disabled', false);*/
+
+        }
+
+        function submitAdvice(){
+            
+            
+            
+
+            cpt++;
+            newAdvice = table.insertRow(cpt);
+            $('#idComment').prop('disabled', false);
+            $('#gradeD').prop('disabled', false);
+            $('#gradeQ').prop('disabled', false);
+
+            $('#btnComment').prop('disabled', false);
+            $('#btnDifficulty').prop('disabled', false);
+            $('#btnQuality').prop('disabled', false);
+
+            $('#idComment').val("");
+            $('#gradeD').val("--Please choose a grade--");
+            $('#gradeQ').val("--Please choose a grade--");
+            /*$('#idDifficulty').val("");
+            $('#idQuality').val("");*/
+
+            $('#btnSubmit').prop('disabled', true);
+
+           
         }
         
         function addText()
@@ -93,3 +252,17 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+<style>
+table.bord {
+  border: 1px solid black;
+},
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+},
+
+table.Space {
+    border-spacing: 30px;
+}
+</style>
