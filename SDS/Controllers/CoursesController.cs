@@ -28,6 +28,7 @@ namespace SDS.Controllers
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
@@ -35,6 +36,9 @@ namespace SDS.Controllers
 
             var course = await _context.Course
                 .FirstOrDefaultAsync(m => m.Id == id);
+            System.Diagnostics.Debug.WriteLine("IIIIIIIIIIIICCCCCCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+            System.Diagnostics.Debug.WriteLine(course.AllComments[0]);
+            System.Diagnostics.Debug.WriteLine("Fin");
             if (course == null)
             {
                 return NotFound();
@@ -203,23 +207,47 @@ namespace SDS.Controllers
         }
 
         // POST: Courses/CommentTest/7
-        public async Task<IActionResult> TestSaveList(int id,[Bind("CommentStudent")] Comment comments)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Comments(int id,string comment,string gradeDifficulty/*, string gradeQuality*/)
         {
-           
+            /*
+             //var c = await _context.Course.FindAsync(id);
+             if (id != course.Id)
+             {
+                 return NotFound();
+             }*/
             var course = await _context.Course.FindAsync(id);
-           
-            if (id!= course.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
 
-                course.AllComments.Add(comments);
+
+                Comment newC = new Comment(){CommentStudent = comment};
+                /*
+                if (newC.IdStudent == null)
+                {
+                    newC.IdStudent = 0;
+                }
+                else { 
+                    newC.IdStudent = newC.IdStudent + 1;
+                }*/
+                //Random rnd = new Random();
+                //newC.IdStudent = rnd.Next(0, 55);
+                
+                var l = course.AllComments;
+                if(l == null)
+                {
+                    l = new List<Comment>();
+                }
+                l.Add(newC);
+                course.AllComments = l;
+                
+                
                 try
                 {
-                    _context.Update(course);
+                    course.Difficulty = Int32.Parse(gradeDifficulty);
+                    //= Int32.Parse(gradeDifficulty);
+                    //_context.Update(course);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -238,65 +266,9 @@ namespace SDS.Controllers
             return View(course);
         }
 
-        // GET: Courses/CommentTest
-        public async Task<IActionResult> CommentTest(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return View(course);
-        }
-
-        // POST: Courses/CommentTest/3
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CommentTest(int id, [Bind("LastComment")] Course c)
-        {
-
-            //var course = await _context.Course.FindAsync(id);
-            Comment newC = new Comment();
-            newC.CommentStudent = c.LastComment;
-            c.AllComments = new List<Comment>();
-            if (id != c.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-
-
-                c.AllComments.Add(newC);
-                try
-                {
-                    _context.Update(c);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CourseExists(c.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(c);
-        }
-
 
     }
+
+
+    
 }

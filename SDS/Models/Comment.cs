@@ -6,7 +6,7 @@ namespace SDS.Models
     public class Comment
     {
         [Key]
-        //public int IdStudent { get; set; }
+        //public int? IdStudent { get; set; }
 
         public string? CommentStudent { get; set; }
     }
