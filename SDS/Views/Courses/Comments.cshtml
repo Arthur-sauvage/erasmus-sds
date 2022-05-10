@@ -19,15 +19,34 @@
 		<input type="hidden" asp-for="Id" />
 		 <div class="form-group">
 			 <input id="idComment" style="margin-bottom: 30px" type="text"  name="comment" required minlength="4" size="100">
-					 <label style="margin-right:80px;font-weight: bold" for="gradeDifficulty">Choose a grade of difficulty between 1 and 5:</label>
-		 <select name="gradeDifficulty" id="gradeD" style="margin-bottom: 60px">
-			<option value="">--Please choose a grade--</option>
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
+					 <label style="margin-right:80px;font-weight: bold" for="gradeDifficulty">Choose a grade of difficulty between 0 and 5:</label>
+		 <select name="gradeDifficulty" id="gradeD" style="margin-bottom: 60px ; margin-right: 100px">
 			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
+			<option value="0">0</option>
+			
+			
+			
+			
+			
+		   </select>
+
+		   <label style="margin-right:80px;font-weight: bold" for="gradeQuality">Choose a grade of quality between 0 and 5:</label>
+		   <select name="gradeQuality" id="gradeQ" style="margin-bottom: 60px">
+			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
+			<option value="0">0</option>
+			
+			
+			
+			
+			
 		   </select>
 
 		   <!--
@@ -47,7 +66,7 @@
 
 
 				<div class="form-group">
-				<input type="submit" value="Save" class="btn btn-primary" />
+				<input type="submit"  value="Save" class="btn btn-primary" />
 			</div>
 	</form>
 
@@ -77,6 +96,10 @@
 		var table = document.getElementById("myTable");
 		var newAdvice = table.insertRow(cpt);
 
+
+		function saveC(){
+			$('#btnSave').prop('disabled', true);
+		}
 
 
 		function addComment(){

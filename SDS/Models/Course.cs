@@ -18,6 +18,8 @@ namespace SDS.Models
 
         public List<Comment>? AllComments { get; set; }
 
+        public int? Quality { get; set; }
+
         //public string? LastComment { get; set; }    
         //public string? LastComment { get; set; }
 

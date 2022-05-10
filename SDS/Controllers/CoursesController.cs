@@ -217,7 +217,7 @@ namespace SDS.Controllers
         // POST: Courses/CommentTest/7
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Comments(int id,string comment,string gradeDifficulty/*, string gradeQuality*/)
+        public async Task<IActionResult> Comments(int id,string comment,string gradeDifficulty, string gradeQuality/*, string gradeQuality*/)
         {
             /*
              //var c = await _context.Course.FindAsync(id);
@@ -230,7 +230,11 @@ namespace SDS.Controllers
             {
 
 
-                Comment newC = new Comment(){CommentStudent = comment};
+                Comment newC = new Comment() {
+                    CommentStudent = comment,
+                    DifficultyC = Int32.Parse(gradeDifficulty),
+                    QualityC = Int32.Parse(gradeQuality)
+                };
                 /*
                 if (newC.IdStudent == null)
                 {
@@ -249,11 +253,18 @@ namespace SDS.Controllers
                 }
                 l.Add(newC);
                 course.AllComments = l;
+
+
                 
                 
                 try
                 {
-                    course.Difficulty = Int32.Parse(gradeDifficulty);
+                    if(course.Quality == null){
+                        course.Quality = 5;
+                    }
+                    
+                    course.Difficulty = (Int32.Parse(gradeDifficulty)+course.Difficulty)/(course.AllComments.Count()+1);
+                    course.Quality = (Int32.Parse(gradeQuality) + course.Quality) / (course.AllComments.Count() + 1);
                     //= Int32.Parse(gradeDifficulty);
                     //_context.Update(course);
                     await _context.SaveChangesAsync();
