@@ -33,12 +33,20 @@ namespace SDS.Controllers
             {
                 return NotFound();
             }
-
+            
+            var comments = _context.Comment.ToArray();
+            /*
+            System.Diagnostics.Debug.WriteLine("IIIIIIIIIIIICCCCCCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+            int i = 0;
+            foreach (var comment in comments)
+            {
+                System.Diagnostics.Debug.WriteLine("i : " + comment.CommentStudent);
+                i++;
+            }
+            System.Diagnostics.Debug.WriteLine("Fin");
+            */
             var course = await _context.Course
                 .FirstOrDefaultAsync(m => m.Id == id);
-            System.Diagnostics.Debug.WriteLine("IIIIIIIIIIIICCCCCCCCCCCCCCCIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-            System.Diagnostics.Debug.WriteLine(course.AllComments[0]);
-            System.Diagnostics.Debug.WriteLine("Fin");
             if (course == null)
             {
                 return NotFound();

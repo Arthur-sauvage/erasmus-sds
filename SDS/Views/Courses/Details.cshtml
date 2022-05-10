@@ -50,7 +50,15 @@
             @Html.DisplayNameFor(model => model.AllComments)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AllComments)
+    <ul>
+        @foreach (var item in Model.AllComments)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => item.CommentStudent)
+            </li>
+        }
+    </ul>
+</table>
         </dd>
     </dl>
 </div>
@@ -58,3 +66,11 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+<!--
+    <ul>
+             foreach(Comment c in Course.AllComments)
+            {
+                <li>c.CommentStudent</li>
+            }
+            </ul>
+-->

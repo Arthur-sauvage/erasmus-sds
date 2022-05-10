@@ -14,4 +14,5 @@ using SDS.Models;
         }
 
         public DbSet<SDS.Models.Course> Course { get; set; }
-    }
+        public DbSet<SDS.Models.Comment> Comment { get; set; }
+}
