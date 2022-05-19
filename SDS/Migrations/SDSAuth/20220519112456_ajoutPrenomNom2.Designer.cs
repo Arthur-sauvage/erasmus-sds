@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SDS.Data;
 
@@ -10,9 +11,10 @@ using SDS.Data;
 namespace SDS.Migrations.SDSAuth
 {
     [DbContext(typeof(SDSAuthContext))]
-    partial class SDSAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20220519112456_ajoutPrenomNom2")]
+    partial class ajoutPrenomNom2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");

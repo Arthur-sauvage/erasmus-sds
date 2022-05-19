@@ -126,6 +126,8 @@ namespace SDS.Areas.Identity.Pages.Account
                 string emailtmp = Input.FirstName + "." + Input.LastName + "@student.put.poznan.pl";
                 await _userStore.SetUserNameAsync(user, Input.Student_ID, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, emailtmp, CancellationToken.None);
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

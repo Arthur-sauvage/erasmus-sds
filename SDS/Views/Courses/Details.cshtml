@@ -58,7 +58,14 @@
         <h3 style = "margin-top:40px">Advice of studients about the course :  @Html.DisplayFor(model => model.Name) </h3>
 
 
-		 <table style = "margin-top:40px ; margin-bottom:60px" class=".col-lg-6" id="myTable">
+
+            @if (Model.AllComments == null)
+            {
+                    <h2>Pas de Commetaire</h2>
+                }
+                else
+                {
+            <table style = "margin-top:40px ; margin-bottom:60px" class=".col-lg-6" id="myTable">
             <tr>
 	            <td style="padding-right:150px ; font-weight: bold">COMMENT</td>
 	            <td style="padding-right:10px ; font-weight: bold">DIFFICULTY</td>
@@ -72,9 +79,8 @@
                     <td>@Html.DisplayFor(modelItem => item.QualityC)</td>
                 </tr>
             }
-
-        </table>
-    
+                    </table>
+                }
 
         </dd>
     </dl>

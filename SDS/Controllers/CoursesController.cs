@@ -3,20 +3,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SDS.Data;
 using SDS.Models;
+using System.Security.Claims;
 
 namespace SDS.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly SDSContext _context;
+        private readonly SDSAuthContext _userManager;
 
-        public CoursesController(SDSContext context)
+        public CoursesController(SDSContext context, SDSAuthContext userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Courses
@@ -185,6 +191,17 @@ namespace SDS.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Course.FindAsync(id);
+            /*
+            var commentsA = _context.Comment.ToArray();
+            var comments = new List<Comment>();
+            for (int i = 0; i < commentsA.Length; i++)
+            {
+                if(commentsA[i] == id)
+                {
+                    comments.Add(commentsA[i]);
+                }
+            }
+            */
             _context.Course.Remove(course);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -225,15 +242,36 @@ namespace SDS.Controllers
              {
                  return NotFound();
              }*/
+
             var course = await _context.Course.FindAsync(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
+            if (_context.Comment.Count() > 0)
+            {
+                
+                var comments = _context.Comment.ToArray();
+                for(int i = 0; i < comments.Length; i++)
+                {
+                    var comm = comments[i];
+                    if(String.Equals(comm.IdStudent,userId))
+                    {
+                        return View(course);
+                    }
+                }
+            }
+            
+            
+
+           
             if (ModelState.IsValid)
             {
 
-
                 Comment newC = new Comment() {
+                    IdStudent = userId,
                     CommentStudent = comment,
                     DifficultyC = Int32.Parse(gradeDifficulty),
-                    QualityC = Int32.Parse(gradeQuality)
+                    QualityC = Int32.Parse(gradeQuality),
+                    IDCourse = id
+                    
                 };
                 /*
                 if (newC.IdStudent == null)

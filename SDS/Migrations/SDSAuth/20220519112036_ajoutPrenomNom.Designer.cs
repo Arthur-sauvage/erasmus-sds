@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SDS.Data;
 
@@ -10,9 +11,10 @@ using SDS.Data;
 namespace SDS.Migrations.SDSAuth
 {
     [DbContext(typeof(SDSAuthContext))]
-    partial class SDSAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20220519112036_ajoutPrenomNom")]
+    partial class ajoutPrenomNom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
@@ -167,12 +169,6 @@ namespace SDS.Migrations.SDSAuth
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("navchar(100)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("navchar(100)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");

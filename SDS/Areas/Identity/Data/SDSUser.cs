@@ -12,10 +12,10 @@ public class SDSUser : IdentityUser
 {
     [PersonalData]
     [Column(TypeName = "navchar(100)")]
-    private string? FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     [PersonalData]
     [Column(TypeName = "navchar(100)")]
-    private string? LastName { get; set; }
+    public string? LastName { get; set; }
 }
 

@@ -1,14 +1,17 @@
-﻿@model SDS.Models.Course
-
+﻿@using Microsoft.AspNetCore.Identity
+@using SDS.Areas.Identity.Data
+@model SDS.Models.Course
+@inject UserManager<SDSUser> UserManager
 
 
 @{
 	ViewData["Title"] = "Comments";
+	ViewBag.user = UserManager.GetUserId(User);
 }
 
 
 
-<h1>Comments</h1>
+<h1>Comments for @Model.Name</h1>
 
 
 <div id="divComment">
