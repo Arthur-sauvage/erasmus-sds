@@ -72,10 +72,13 @@ namespace SDS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Speciality,Ects,Likes,Difficulty")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Speciality,Ects")] Course course)
         {
             if (ModelState.IsValid)
             {
+                course.Likes = 0;
+                course.Quality = null;
+                course.Difficulty = null;
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -191,17 +194,16 @@ namespace SDS.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Course.FindAsync(id);
-            /*
+            
             var commentsA = _context.Comment.ToArray();
             var comments = new List<Comment>();
             for (int i = 0; i < commentsA.Length; i++)
             {
-                if(commentsA[i] == id)
+                if(commentsA[i].IDCourse == id)
                 {
-                    comments.Add(commentsA[i]);
+                    _context.Comment.Remove(commentsA[i]);
                 }
             }
-            */
             _context.Course.Remove(course);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -297,12 +299,26 @@ namespace SDS.Controllers
                 
                 try
                 {
-                    if(course.Quality == null){
-                        course.Quality = 5;
+                    bool nullQuality = false;
+                    bool nullDifficulty = false;
+                    if (course.Quality == null){
+                        course.Quality = Int32.Parse(gradeQuality);
+                        nullQuality = true;
                     }
-                    
-                    course.Difficulty = (Int32.Parse(gradeDifficulty)+course.Difficulty)/(course.AllComments.Count()+1);
-                    course.Quality = (Int32.Parse(gradeQuality) + course.Quality) / (course.AllComments.Count() + 1);
+                    if (course.Difficulty == null)
+                    {
+                        course.Difficulty = Int32.Parse(gradeDifficulty);
+                        nullDifficulty = true;
+                    }
+
+                    if (!nullQuality)
+                    {
+                        course.Quality = (Int32.Parse(gradeQuality) + course.Quality) / (course.AllComments.Count() + 1);
+                    }
+                    if (!nullDifficulty)
+                    {
+                        course.Difficulty = (Int32.Parse(gradeDifficulty) + course.Difficulty) / (course.AllComments.Count() + 1);
+                    }
                     //= Int32.Parse(gradeDifficulty);
                     //_context.Update(course);
                     await _context.SaveChangesAsync();

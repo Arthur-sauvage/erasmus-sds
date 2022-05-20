@@ -10,7 +10,7 @@ namespace SDS.Models
         public string? Speciality { get; set; }
         public int Ects { get; set; }
         public int Likes { get; set; }
-        public int Difficulty { get; set; }
+        public int? Difficulty { get; set; }
 
         public string? LastComment { get; set; }
 

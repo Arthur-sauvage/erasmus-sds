@@ -55,10 +55,25 @@
                 @Html.DisplayFor(modelItem => item.Likes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Difficulty)
+                    @if(item.Difficulty == null)
+                    {
+                        <a> - </a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Difficulty)
+                    }
+                    
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Quality)
+                    @if(item.Quality == null)
+                    {
+                        <a> - </a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Quality)
+                    }
             </td>
             <td>
                 <a asp-action="Like" asp-route-id="@item.Id">Like</a> |
