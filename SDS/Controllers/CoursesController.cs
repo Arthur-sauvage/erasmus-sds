@@ -254,7 +254,7 @@ namespace SDS.Controllers
                 for(int i = 0; i < comments.Length; i++)
                 {
                     var comm = comments[i];
-                    if(String.Equals(comm.IdStudent,userId))
+                    if(comm.IDCourse == id && String.Equals(comm.IdStudent,userId))
                     {
                         return View(course);
                     }
@@ -268,6 +268,7 @@ namespace SDS.Controllers
             {
 
                 Comment newC = new Comment() {
+                    CommentId = userId + id.ToString(),
                     IdStudent = userId,
                     CommentStudent = comment,
                     DifficultyC = Int32.Parse(gradeDifficulty),
@@ -311,14 +312,27 @@ namespace SDS.Controllers
                         nullDifficulty = true;
                     }
 
-                    if (!nullQuality)
+                    if(!nullQuality && !nullDifficulty)
                     {
-                        course.Quality = (Int32.Parse(gradeQuality) + course.Quality) / (course.AllComments.Count() + 1);
+                        int quality = 0;
+                        int difficulty = 0;
+                        int cpt = 0;
+                        var comments = _context.Comment.ToArray();
+                        for (int i = 0; i < comments.Length; i++)
+                        {
+                            var comm = comments[i];
+                            if (comm.IDCourse == id)
+                            {
+                                quality += comm.QualityC;
+                                difficulty += comm.DifficultyC;
+                                cpt++;
+                            }
+                        }
+                        course.Quality = quality / cpt;
+                        course.Difficulty = difficulty / cpt;
                     }
-                    if (!nullDifficulty)
-                    {
-                        course.Difficulty = (Int32.Parse(gradeDifficulty) + course.Difficulty) / (course.AllComments.Count() + 1);
-                    }
+
+                    
                     //= Int32.Parse(gradeDifficulty);
                     //_context.Update(course);
                     await _context.SaveChangesAsync();
