@@ -8,7 +8,11 @@ Pierre Auffray (Scrum master) is reponsible for:
 - Helping to develop the project
 - making sure that we organize retrospectives
 
-Arthur Sauvage : Product owner
+Arthur Sauvage (Product owner) is reponsible for:
+- Managing and prioritizing the product backlog
+- Overseeing development stages
+- Anticipating client needs
+- Evaluating product progress at each iteration
 
 Louis Conan : Developper
 
