@@ -30,6 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Difficulty)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quality)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -52,14 +55,35 @@
                 @Html.DisplayFor(modelItem => item.Likes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Difficulty)
+                    @if(item.Difficulty == null)
+                    {
+                        <a> - </a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Difficulty)
+                    }
+                    
+            </td>
+            <td>
+                    @if(item.Quality == null)
+                    {
+                        <a> - </a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Quality)
+                    }
             </td>
             <td>
                 <a asp-action="Like" asp-route-id="@item.Id">Like</a> |
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Comments" asp-route-id="@item.Id">Comments</a>
             </td>
+            
+
         </tr>
 }
     </tbody>

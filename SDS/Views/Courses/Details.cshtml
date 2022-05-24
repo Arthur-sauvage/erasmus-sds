@@ -46,9 +46,54 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Difficulty)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quality)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quality)
+        </dd>
+        
+        <dd class = "col-sm-10">
+
+        <h3 style = "margin-top:40px">Advice of studients about the course :  @Html.DisplayFor(model => model.Name) </h3>
+
+
+
+            @if (Model.AllComments == null)
+            {
+                    <h2>Pas de Commetaire</h2>
+                }
+                else
+                {
+            <table style = "margin-top:40px ; margin-bottom:60px" class=".col-lg-6" id="myTable">
+            <tr>
+	            <td style="padding-right:150px ; font-weight: bold">COMMENT</td>
+	            <td style="padding-right:10px ; font-weight: bold">DIFFICULTY</td>
+	            <td style="font-weight: bold">QUALITY</td>
+            </tr>
+            @foreach (var item in Model.AllComments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CommentStudent)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DifficultyC)</td>
+                    <td>@Html.DisplayFor(modelItem => item.QualityC)</td>
+                </tr>
+            }
+                    </table>
+                }
+
+        </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+<!--
+    <ul>
+             foreach(Comment c in Course.AllComments)
+            {
+                <li>c.CommentStudent</li>
+            }
+            </ul>
+-->
