@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj": {}
+    "C:\\Users\\pc\\source\\repos\\erasmus-sds\\SDS\\SDS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj": {
+    "C:\\Users\\pc\\source\\repos\\erasmus-sds\\SDS\\SDS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\source\\repos\\erasmus-sds\\SDS\\SDS.csproj",
         "projectName": "SDS",
-        "projectPath": "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\SDS.csproj",
-        "packagesPath": "C:\\Users\\Arthur Sauvage\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Arthur Sauvage\\Documents\\Tp_Pologne\\erasmus-sds\\SDS\\obj\\",
+        "projectPath": "C:\\Users\\pc\\source\\repos\\erasmus-sds\\SDS\\SDS.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pc\\source\\repos\\erasmus-sds\\SDS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Arthur Sauvage\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,6 +75,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
