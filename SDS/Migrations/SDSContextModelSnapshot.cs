@@ -14,7 +14,23 @@ namespace SDS.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+
+            modelBuilder.Entity("SDS.Models.Basket", b =>
+                {
+                    b.Property<string>("idBasket")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("idCourse")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("idStudent")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("idBasket");
+
+                    b.ToTable("Basket");
+                });
 
             modelBuilder.Entity("SDS.Models.Comment", b =>
                 {
@@ -79,6 +95,24 @@ namespace SDS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("SDS.Models.Like", b =>
+                {
+                    b.Property<string>("likeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("courseId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("studentId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("likeId");
+
+                    b.ToTable("Like");
                 });
 
             modelBuilder.Entity("SDS.Models.Comment", b =>
