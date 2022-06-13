@@ -19,9 +19,10 @@ builder.Services.AddDefaultIdentity<SDSUser>(options =>
     options.Password.RequiredLength = 1;
     options.Password.RequireDigit = false;
 }
-        ) 
-    .AddEntityFrameworkStores<SDSAuthContext>();;
-
+        )
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<SDSAuthContext>();
+    
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<SDSContext>(options =>

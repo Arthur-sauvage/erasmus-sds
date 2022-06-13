@@ -5,10 +5,11 @@
 }
 
 <h1>Course List</h1>
+@if(User.IsInRole("Teacher") || User.IsInRole("Admin"))
+       {
+        <p><a asp-action="Create">Create New</a></p>
+       }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -76,12 +77,20 @@
                     }
             </td>
             <td>
-                <a asp-action="Like" asp-route-id="@item.Id">Like</a> |
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="Comments" asp-route-id="@item.Id">Comments</a> |
-                <a asp-controller="Basket" asp-action="Add" asp-route-id="@item.Id">Add to Basket</a>
+                 @if (User.IsInRole("Student"))
+                    {
+                        <a asp-action="Like" asp-route-id="@item.Id">Like</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                        <a asp-action="Comments" asp-route-id="@item.Id">Comments</a> 
+                        <a asp-controller="Basket" asp-action="Add" asp-route-id="@item.Id">Add to Basket</a>
+                        }
+                 else if(User.IsInRole("Teacher") || User.IsInRole("Admin"))
+                 {
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                 }
+                    
             </td>
             
 
