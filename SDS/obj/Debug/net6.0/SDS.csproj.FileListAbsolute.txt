@@ -1174,3 +1174,6 @@ C:\Users\louis\source\repos\erasmus-sds\SDS\obj\Debug\net6.0\refint\SDS.dll
 C:\Users\louis\source\repos\erasmus-sds\SDS\obj\Debug\net6.0\SDS.pdb
 C:\Users\louis\Source\Repos\erasmus-sds\SDS\obj\Debug\net6.0\SDS.genruntimeconfig.cache
 C:\Users\louis\Source\Repos\erasmus-sds\SDS\obj\Debug\net6.0\ref\SDS.dll
+C:\Users\pc\source\repos\erasmus-sds\SDS\bin\Debug\net6.0\Syncfusion.Compression.Portable.dll
+C:\Users\pc\source\repos\erasmus-sds\SDS\bin\Debug\net6.0\Syncfusion.Licensing.dll
+C:\Users\pc\source\repos\erasmus-sds\SDS\bin\Debug\net6.0\Syncfusion.Pdf.Portable.dll

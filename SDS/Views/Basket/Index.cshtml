@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<SDS.Models.Course>
 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{Html.BeginForm("CreatePDF", "Basket", FormMethod.Get);
+{
 <h1>Basket</h1>
 
 <table class="table">
@@ -80,6 +82,15 @@
             
 
         </tr>
-}
+}   
+        
+
+
     </tbody>
+    <div>
+    <input type="submit" value="Generate PDF" style="width:150px;height:27px" />
+</div>
 </table>
+}
+Html.EndForm();
+}
