@@ -98,10 +98,25 @@ namespace SDS.Controllers
             {
                 return NotFound();
             }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var likes = _context.Like.ToList();
+            foreach(var l in likes)
+            {
+                if(string.Equals(l.studentId,userId) && Int32.Parse(l.courseId) == id)
+                {
+                    return View();
+                }
+            }
             try
                 {
+                    
                     course.Likes += 1; 
                     _context.Update(course);
+                    Like newLike = new Like();
+                    newLike.courseId = id.ToString();
+                    newLike.studentId = userId;
+                    newLike.likeId = userId + id.ToString();
+                    _context.Like.Add(newLike);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -140,7 +155,7 @@ namespace SDS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Speciality,Ects,Likes,Difficulty")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Speciality,Ects")] Course course)
         {
             if (id != course.Id)
             {
